@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+import styles from "./Home.module.css";
 
 function Home() {
   const [query, setQuery] = useState("");
@@ -12,26 +13,46 @@ function Home() {
 
   const navigate = useNavigate();
 
-  const fetchImages = async (searchQuery) => {
-    setLoading(true);
-    setError("");
-
-    try {
-      const response = await fetch(
-        `https://api.unsplash.com/search/photos?query=${searchQuery}&client_id=${UNSPLASH_ACCESS_KEY}`
-      );
-
-      if (!response.ok) {
-        throw new Error("Failed to fetch images. Please try again.");
+  const fetchImages = useCallback(
+    async (searchQuery) => {
+      if (!searchQuery.trim()) {
+        setImages([]);
+        return;
       }
-      const data = await response.json();
-      setImages(data.results);
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
+
+      setLoading(true);
+      setError("");
+
+      try {
+        const response = await fetch(
+          `https://api.unsplash.com/search/photos?query=${searchQuery}&client_id=${UNSPLASH_ACCESS_KEY}&per_page=9`
+        );
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch images. Please try again.");
+        }
+        const data = await response.json();
+        setImages(data.results);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    },
+    [UNSPLASH_ACCESS_KEY]
+  );
+
+  useEffect(() => {
+    const initialQuery = query || "nature";
+
+    const handler = setTimeout(() => {
+      fetchImages(initialQuery);
+    }, 500);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [query, fetchImages]);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -41,8 +62,11 @@ function Home() {
   };
 
   const handleImageClick = (imageData) => {
-    console.log("Navigating to details with:", imageData);
     navigate(`/details/${imageData.id}`, { state: { image: imageData } });
+  };
+
+  const handleInputChange = (e) => {
+    setQuery(e.target.value);
   };
 
   useEffect(() => {
@@ -51,24 +75,35 @@ function Home() {
   }, []);
 
   return (
-    <div>
-      <h1>Main Page</h1>
-      <p>Please use search bar</p>
-      <form onSubmit={handleSearch}>
+    <div className={styles.homeContainer}>
+      <div className={styles.heading}>
+        <h1>Welcome</h1>
+        <p>Explore our collection</p>
+      </div>
+      <div className={styles.searchBar}>
         <input
           type="search"
           placeholder="Search here for..."
           value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={handleInputChange}
+          className={styles.input}
         />
-        <button type="submit">Search</button>
-      </form>
+      </div>
 
+      {error && <p>Error: {error}</p>}
       {loading && <p>Loading...</p>}
-      <div>
+      <div className={styles.imageContainer}>
         {images.map((image) => (
-          <div key={image.id} onClick={() => handleImageClick(image)}>
-            <img src={image.urls.small} alt={image.alt_description} />
+          <div
+            key={image.id}
+            onClick={() => handleImageClick(image)}
+            className="image-card"
+          >
+            <img
+              src={image.urls.small}
+              alt={image.alt_description}
+              className={styles.imageCard}
+            />
           </div>
         ))}
       </div>

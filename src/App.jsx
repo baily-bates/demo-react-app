@@ -3,16 +3,16 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Detail from "./pages/Detail";
-import "./App.css";
+import "./styles/Global.css";
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
     <Router>
-      <div>
+      <div className="App-Layout">
         {/* Nav Bar */}
-        <nav>
+        {/* <nav>
           <ul>
             <li>
               <Link to="/">Home</Link>
@@ -24,7 +24,7 @@ function App() {
               <Link to="/details">Detail</Link>
             </li>
           </ul>
-        </nav>
+        </nav> */}
 
         {/* Page Routes */}
         <Routes>

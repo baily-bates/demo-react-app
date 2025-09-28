@@ -1,0 +1,19 @@
+.loginContainer {
+  background-color: var(--color-gray-light);
+  border: 2px solid var(--color-gray-dark);
+  border-radius: var(--border-radius);
+  width: 350px;
+  height: 180px;
+  align-content: center;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  justify-self: center;
+}
+
+p {
+  font-size: 16px;
+}

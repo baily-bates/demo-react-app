@@ -1,5 +1,6 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import styles from "./Detail.module.css";
 
 function Detail() {
   const location = useLocation();
@@ -13,7 +14,6 @@ function Detail() {
 
   return (
     <div>
-      <h1>Image Details</h1>
       <div>
         <img src={image.urls.regular} alt={image.alt_description} />
         <p>

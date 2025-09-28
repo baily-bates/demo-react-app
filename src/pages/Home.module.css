@@ -1,0 +1,48 @@
+.homeContainer {
+  background-color: var(--color-white);
+  min-height: 100vh;
+  padding: 40px;
+}
+
+.searchBar {
+  margin-bottom: 15px;
+  padding: 10px;
+}
+
+.input {
+  width: 100%;
+  padding: 10px 15px;
+  border: 2px solid var(--color-gray-dark);
+  border-radius: var(--border-radius);
+  font-size: 16px;
+  color: var(--color-white);
+}
+
+.imageContainer {
+  display: grid;
+  gap: 20px;
+  padding: 20px 0;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.imageContainer .imageCard {
+  overflow: hidden;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sleek);
+  cursor: pointer;
+}
+
+.imageContainer img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.heading {
+  display: block;
+  align-items: center;
+}
+
+p {
+  font-size: 16px;
+}

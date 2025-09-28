@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import styles from "./Login.module.css";
 
 function Login() {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -26,21 +27,23 @@ function Login() {
   };
   return (
     <div>
-      <h1>Login Page</h1>
-      <p>Please enter phone number to sign in</p>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="phone-number">Phone Number: </label>
-          <input
-            type="text"
-            id="phone-number"
-            value={phoneNumber}
-            onChange={(e) => setPhoneNumber(e.target.value)}
-            placeholder="+1XXXXXXXXXX"
-          />
-          <button type="submit">Sign In</button>
-        </div>
-      </form>
+      <h1>Welcome!</h1>
+      <p>Sign in with phone number</p>
+      <div className={styles.loginContainer}>
+        <form onSubmit={handleSubmit}>
+          <div className={styles.input}>
+            <label htmlFor="phone-number">Phone Number: </label>
+            <input
+              type="text"
+              id="phone-number"
+              value={phoneNumber}
+              onChange={(e) => setPhoneNumber(e.target.value)}
+              placeholder="+1XXXXXXXXXX"
+            />
+            <button type="submit">Sign In</button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

@@ -1,16 +1,37 @@
-# React + Vite
+# 📸 Image Explorer App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Project Overview
 
-Currently, two official plugins are available:
+This is a simple, modern web app built with **React** that allows users to search and explore high-quality images fetched from the **Unsplash API**. The app demonstrates fundamental front-end development skills, including state management, asynchronous data fetching, responsive design, and component-based architecture.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Frontend:** React, JavaScript
+- **Styling:** CSS Modules
+- **Routing:** React Router DOM
+- **API:** Unsplash API
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Setup and Run
+
+### Prerequisite
+
+You need **Node.js** and **npm** installed.
+
+### 1. Installation
+
+git clone https://github.com/baily-bates/demo-react-app.git
+cd [into project]
+npm install
+
+### 2,. API Config
+
+Create a file named .env in the root dir and add your Unsplash Access Key:
+VITE_REACT_APP_UNSPLASH_ACCESS_KEY="YOUR_KEY"
+
+### 3. Start the App
+
+npm start
